@@ -1,7 +1,7 @@
 package com.lee.commend.service;
 
-import com.lee.commend.model.UserLiked;
-import com.lee.commend.model.UserLikedCountDTO;
+import com.lee.commend.domain.UserLike;
+import com.lee.commend.model.UserLikeCountDTO;
 
 import java.util.List;
 
@@ -13,54 +13,54 @@ public interface RedisService {
     /**
      * 点赞 新添加一条数据,状态为1
      *
-     * @param likedUserId     被点赞人ID
-     * @param postLikedUserId 点赞人ID
+     * @param LikeUserId     被点赞人ID
+     * @param postLikeUserId 点赞人ID
      */
-    void saveLiked2Redis(String likedUserId, String postLikedUserId);
+    void saveLike2Redis(String LikeUserId, String postLikeUserId);
 
     /**
      * 取消点赞.将记录的状态修改为0
      *
-     * @param unLikedUserId
-     * @param postUnLikedUserId
+     * @param unLikeUserId
+     * @param postUnLikeUserId
      */
-    void unLikedFromRedis(String unLikedUserId, String postUnLikedUserId);
+    void unLikeFromRedis(String unLikeUserId, String postUnLikeUserId);
 
     /**
      * 删除一条点赞记录
      *
-     * @param likedUserId
-     * @param postLikedUserId
+     * @param LikeUserId
+     * @param postLikeUserId
      */
-    void deleteLikedFromRedis(String likedUserId, String postLikedUserId);
+    void deleteLikeFromRedis(String LikeUserId, String postLikeUserId);
 
     /**
      * 被点赞人的点赞数加1
      *
-     * @param likedUserId
+     * @param LikeUserId
      */
-    void incrementLikedCount(String likedUserId);
+    void incrementLikeCount(String LikeUserId);
 
     /**
      * 被点赞人的点赞数减1
      *
-     * @param likedUserId
+     * @param LikeUserId
      */
-    void decrementLikedCount(String likedUserId);
+    void decrementLikeCount(String LikeUserId);
 
     /**
      * 获取Redis中存储的所有的点赞数据
      *
      * @return
      */
-    List<UserLiked> getLikedDataFromRedis();
+    List<UserLike> getLikedDataFromRedis();
 
 
     /**
      * 获取Redis中存储的所有的点赞数量数据
      * @return
      */
-    List<UserLikedCountDTO> getUserLikedCountFromRedis();
+    List<UserLikeCountDTO> getUserLikeCountFromRedis();
 
 
 }

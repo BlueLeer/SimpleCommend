@@ -1,4 +1,4 @@
-package com.lee.commend.model;
+package com.lee.commend.constant;
 
 import lombok.Getter;
 
@@ -9,12 +9,12 @@ import lombok.Getter;
  * @date 2019/12/27 11:21
  */
 @Getter
-public enum UserLikedEnum {
-    LIKED_STATUS(1, "已赞"), UN_LIKE_STATUS(0, "未赞");
+public enum UserLikeEnum {
+    Like_STATUS(1, "已赞"), UN_LIKE_STATUS(0, "未赞");
     private int code;
     private String message;
 
-    UserLikedEnum(int code, String message) {
+    UserLikeEnum(int code, String message) {
         this.code = code;
     }
 

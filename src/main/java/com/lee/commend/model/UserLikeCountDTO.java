@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserLikedCountDTO {
+public class UserLikeCountDTO {
     private Integer userId;
-    private Integer likedCount;
+    private Integer LikeCount;
 }

@@ -8,24 +8,24 @@ public class RedisKeyUtils {
     /**
      * 保存用户点赞数据的key
      */
-    public static final String MAP_KEY_USER_LIKED = "map_key_user_liked";
+    public static final String MAP_KEY_USER_LIKE = "map_key_user_Like";
 
     /**
      * 保存用户被点赞数量的key
      */
-    public static final String MAP_KEY_USER_LIKED_COUNT = "map_key_user_liked_count";
+    public static final String MAP_KEY_USER_LIKE_COUNT = "map_key_user_Like_count";
     
-    public static final String LIKED_POST_USER_ID_SPLIT = "::";
+    public static final String LIKE_POST_USER_ID_SPLIT = "::";
 
     /**
-     * 根据被点赞人(likedUserId)  和 点赞人(likedPostId) 生成key,例如: 23232:34343
+     * 根据被点赞人(LikeUserId)  和 点赞人(LikePostId) 生成key,例如: 23232::34343
      *
-     * @param likedUserId 被点赞人ID
-     * @param likedPostID 点赞人ID
+     * @param LikeUserId 被点赞人ID
+     * @param LikePostID 点赞人ID
      * @return
      */
-    public static String getLikedKey(String likedUserId, String likedPostID) {
+    public static String getLikeKey(String LikeUserId, String LikePostID) {
         StringBuilder sb = new StringBuilder();
-        return sb.append(likedUserId).append("::").append(likedPostID).toString();
+        return sb.append(LikeUserId).append("::").append(LikePostID).toString();
     }
 }

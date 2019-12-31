@@ -3,6 +3,8 @@ package com.lee.commend.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lee.commend.constant.UserLikeEnum;
+import com.lee.commend.util.RedisKeyUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Redis在SpringBoot中的配置
@@ -39,6 +43,8 @@ public class RedisConfig {
         template.setHashKeySerializer(serializer);
         template.setHashValueSerializer(serializer);
         template.afterPropertiesSet();
+        template.expire(RedisKeyUtils.MAP_KEY_USER_Like_COUNT,24, TimeUnit.HOURS);
+        template.expire(RedisKeyUtils.MAP_KEY_USER_Like,24, TimeUnit.HOURS);
         return template;
     }
 
