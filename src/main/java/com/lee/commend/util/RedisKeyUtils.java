@@ -8,12 +8,12 @@ public class RedisKeyUtils {
     /**
      * 保存用户点赞数据的key
      */
-    public static final String MAP_KEY_USER_LIKE = "map_key_user_Like";
+    public static final String MAP_KEY_USER_LIKE = "map_key_user_like";
 
     /**
      * 保存用户被点赞数量的key
      */
-    public static final String MAP_KEY_USER_LIKE_COUNT = "map_key_user_Like_count";
+    public static final String MAP_KEY_USER_LIKE_COUNT = "map_key_user_like_count";
     
     public static final String LIKE_POST_USER_ID_SPLIT = "::";
 

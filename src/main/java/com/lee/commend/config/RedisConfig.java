@@ -37,14 +37,17 @@ public class RedisConfig {
 
         Jackson2JsonRedisSerializer<Object> serializer = new Jackson2JsonRedisSerializer<>(Object.class);
         serializer.setObjectMapper(om);
-
+        
         template.setKeySerializer(serializer);
         template.setValueSerializer(serializer);
         template.setHashKeySerializer(serializer);
         template.setHashValueSerializer(serializer);
         template.afterPropertiesSet();
-        template.expire(RedisKeyUtils.MAP_KEY_USER_Like_COUNT,24, TimeUnit.HOURS);
-        template.expire(RedisKeyUtils.MAP_KEY_USER_Like,24, TimeUnit.HOURS);
+        
+        // 设置过期时间为24小时
+        template.expire(RedisKeyUtils.MAP_KEY_USER_LIKE,24,TimeUnit.HOURS);
+        template.expire(RedisKeyUtils.MAP_KEY_USER_LIKE_COUNT,24,TimeUnit.HOURS);
+       
         return template;
     }
 

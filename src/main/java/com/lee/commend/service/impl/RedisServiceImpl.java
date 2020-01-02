@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lee
@@ -27,19 +28,22 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public void saveLike2Redis(String LikeUserId, String postLikeUserId) {
         String key = RedisKeyUtils.getLikeKey(LikeUserId, postLikeUserId);
-        redisTemplate.opsForHash().put(RedisKeyUtils.MAP_KEY_USER_LIKE, key, UserLikeEnum.Like_STATUS.getCode());
+        redisTemplate.opsForHash().put(RedisKeyUtils.MAP_KEY_USER_LIKE, key, UserLikeEnum.LIKE_STATUS.getCode());
+        redisTemplate.expire(RedisKeyUtils.MAP_KEY_USER_LIKE,24, TimeUnit.HOURS);
     }
 
     @Override
     public void unLikeFromRedis(String unLikeUserId, String postUnLikeUserId) {
         String key = RedisKeyUtils.getLikeKey(unLikeUserId, postUnLikeUserId);
         redisTemplate.opsForHash().put(RedisKeyUtils.MAP_KEY_USER_LIKE, key, UserLikeEnum.UN_LIKE_STATUS.getCode());
+        redisTemplate.expire(RedisKeyUtils.MAP_KEY_USER_LIKE,24, TimeUnit.HOURS);
     }
 
     @Override
     public void deleteLikeFromRedis(String LikeUserId, String postLikeUserId) {
         String key = RedisKeyUtils.getLikeKey(LikeUserId, postLikeUserId);
         redisTemplate.opsForHash().delete(RedisKeyUtils.MAP_KEY_USER_LIKE, key);
+        redisTemplate.expire(RedisKeyUtils.MAP_KEY_USER_LIKE,24, TimeUnit.HOURS);
     }
 
     @Override

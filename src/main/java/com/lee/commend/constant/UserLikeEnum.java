@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @Getter
 public enum UserLikeEnum {
-    Like_STATUS(1, "已赞"), UN_LIKE_STATUS(0, "未赞");
+    LIKE_STATUS(1, "已赞"), UN_LIKE_STATUS(0, "未赞");
     private int code;
     private String message;
 

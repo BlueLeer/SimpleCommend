@@ -53,11 +53,11 @@ public class CommendApplicationTest {
      */
     @Test
     public void testSaveLikedList() {
-        redisService.saveLike2Redis(String.valueOf(1),String.valueOf(2));
-        redisService.saveLike2Redis(String.valueOf(1),String.valueOf(3));
-        redisService.saveLike2Redis(String.valueOf(1),String.valueOf(4));
-        redisService.saveLike2Redis(String.valueOf(1),String.valueOf(5));
-        redisService.saveLike2Redis(String.valueOf(1),String.valueOf(6));
+        redisService.saveLike2Redis(String.valueOf(2),String.valueOf(2));
+        redisService.saveLike2Redis(String.valueOf(2),String.valueOf(3));
+        redisService.saveLike2Redis(String.valueOf(2),String.valueOf(4));
+        redisService.saveLike2Redis(String.valueOf(2),String.valueOf(5));
+        redisService.saveLike2Redis(String.valueOf(2),String.valueOf(6));
         
     }
     

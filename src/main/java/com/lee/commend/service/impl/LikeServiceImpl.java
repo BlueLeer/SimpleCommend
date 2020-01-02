@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Autowired
     private LikeUserRepository likeUserRepository;
-    
+
     @Autowired
     private UserRepository userRepository;
 
@@ -44,6 +45,7 @@ public class LikeServiceImpl implements LikeService {
     @Override
     @Transactional
     public List<UserLike> saveAll(List<UserLike> userLikeList) {
+        userLikeList.forEach(userLike -> userLike.setCreateTime(LocalDateTime.now()));
         List<UserLike> userLikes = (List<UserLike>) likeUserRepository.saveAll(userLikeList);
         return userLikes;
 
@@ -51,12 +53,12 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public Page<UserLike> getLikeListByLikeUserId(String likeUserId, Pageable pageable) {
-        return likeUserRepository.findByLikeUserIdAndStatus(likeUserId, UserLikeEnum.Like_STATUS.getCode(), pageable);
+        return likeUserRepository.findByLikeUserIdAndStatus(likeUserId, UserLikeEnum.LIKE_STATUS.getCode(), pageable);
     }
 
     @Override
     public Page<UserLike> getLikeListByPostUserId(String postUserId, Pageable pageable) {
-        return likeUserRepository.findByPostUserIdAndStatus(postUserId, UserLikeEnum.Like_STATUS.getCode(), pageable);
+        return likeUserRepository.findByPostUserIdAndStatus(postUserId, UserLikeEnum.LIKE_STATUS.getCode(), pageable);
     }
 
     @Override
@@ -71,9 +73,11 @@ public class LikeServiceImpl implements LikeService {
         likedDataFromRedis.forEach(like -> {
             UserLike userLike = getByLikeUserIdAndPostUserId(like.getLikeUserId(), like.getPostUserId());
             if (userLike == null) {
+                like.setCreateTime(LocalDateTime.now());
                 save(like);
-            }else {
+            } else {
                 userLike.setStatus(like.getStatus());
+                userLike.setUpdateTime(LocalDateTime.now());
                 save(userLike);
             }
         });
